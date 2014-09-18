@@ -1,0 +1,25 @@
+<div class="page-header">
+    <div class="media">
+        <div class="pull-left">
+            <img ng-src="{{hero.thumbnail.path + '/standard_fantastic.' + hero.thumbnail.extension}}"
+                 alt="{{hero.name}}" class="img-circle"/>
+        </div>
+        <div class="media-body">
+            <h1 class="media-heading">{{hero.name}}</h1>
+            {{hero.description}}
+            <p ng-if="moreUrl"><b>See more on <a href="{{moreUrl}}">Marvel's website</a> </b></p>
+        </div>
+    </div>
+</div>
+
+<div ng-if="hero.comics" class="panel panel-primary">
+    <div class="panel-heading">Appears in {{hero.comics.available}} comics</div>
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="comic in hero.comics.items">
+            {{comic.name}}
+        </li>
+        <li class="list-group-item">
+            <a href="#/hero/{{hero.id}}/comics">More</a>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,40 @@
+<div class="page-header">
+    <h1>Marvel superheroes</h1>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="input-group">
+                <span class="input-group-addon">Search hero:</span>
+                <input type="text" class="form-control" ng-model="query" enter-key="findHero()">
+
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="findHero()">Search</button>
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        Order <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li role="presentation"><a role="menuitem" href="" ng-click="reverse=false">ASC</a></li>
+                        <li role="presentation"><a role="menuitem" href="" ng-click="reverse=true">DESC</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="jumbotron">
+    <div class="row">
+        <div class="progress" loading-widget>
+            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="10" aria-valuemin="0"
+                 aria-valuemax="100" style="width: 100%"></div>
+        </div>
+        <div class="col-sm-2 col-md-3 col-lg-3" ng-repeat="hero in heroes | orderBy:'name':reverse">
+            <hero-badge hero="hero"></hero-badge>
+        </div>
+    </div>
+    <pagination total-items="total" ng-model="currentPage" ng-change="pageChanged()" max-size="10" boundary-links="true"
+                rotate="false"></pagination>
+
+    <p ng-if="heroes">There's {{total}} heroes in the database</p>
+
+    <p ng-if="!heroes">No heroes could be found :(</p>
+</div>
